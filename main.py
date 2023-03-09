@@ -49,19 +49,12 @@ class BlogPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     author = relationship("User", back_populates="posts")
-<<<<<<< HEAD
-    title = db.Column(db.String(250), unique=True, nullable=False)
-=======
     title = db.Column(db.String(250), nullable=False)
->>>>>>> 227814d (Blog Website)
     subtitle = db.Column(db.String(250), nullable=False)
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
-<<<<<<< HEAD
-=======
     img_thumb =  db.Column(db.String(250), nullable=False)
->>>>>>> 227814d (Blog Website)
     comments = relationship("Comment", back_populates="parent_post")
 
 
@@ -73,11 +66,6 @@ class Comment(db.Model):
     parent_post = relationship("BlogPost", back_populates="comments")
     comment_author = relationship("User", back_populates="comments")
     text = db.Column(db.Text, nullable=False)
-<<<<<<< HEAD
-#
-# with app.app_context():
-#     db.create_all()
-=======
 
 with app.app_context():
     db.create_all()
@@ -96,7 +84,6 @@ with app.app_context():
         db.session.commit()
     except:
         print("Admin creation failed")
->>>>>>> 227814d (Blog Website)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -110,10 +97,6 @@ def admin_only(f):
         return f(*args, **kwargs)
     return decorated_function
 
-<<<<<<< HEAD
-@app.route('/')
-def get_all_posts():
-=======
 def updateBlogData():
     blogRequest = requests.get("https://strapi-localchoice.doshex.com/blogs")
     blogData = blogRequest.json()
@@ -139,7 +122,6 @@ def updateBlogData():
 @app.route('/')
 def get_all_posts():
     updateBlogData()
->>>>>>> 227814d (Blog Website)
     posts = BlogPost.query.all()
     return render_template("index.html", all_posts=posts, logged_in=current_user.is_authenticated)
 
@@ -213,11 +195,6 @@ def show_post(post_id):
         db.session.add(new_comment)
         db.session.commit()
         form.comment_body.data = ""
-<<<<<<< HEAD
-
-=======
-    print(requested_post.author)
->>>>>>> 227814d (Blog Website)
     return render_template("post.html", post=requested_post, logged_in=current_user.is_authenticated, form=form)
 
 
