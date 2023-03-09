@@ -13,18 +13,11 @@ from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import os
-<<<<<<< HEAD
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
-=======
 import requests
 from markdown import markdown
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "mySuperSecretKey"
-# app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
->>>>>>> 227814d (Blog Website)
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
@@ -81,7 +74,7 @@ class Comment(db.Model):
     comment_author = relationship("User", back_populates="comments")
     text = db.Column(db.Text, nullable=False)
 <<<<<<< HEAD
-# 
+#
 # with app.app_context():
 #     db.create_all()
 =======
